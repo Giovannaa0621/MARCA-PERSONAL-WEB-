@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GIO. Portafolio</title>
+<meta name="description" content="GIO. Dirección creativa, moda y marketing digital.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Cinzel:wght@500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE  occasion: a fashion creative's portfolio, hushed and editorial
+   IDEA   a lookbook printed in wine and gold foil: big type, full-bleed pictures, one scroll-driven sequence like a turning page
+   PICTURE her own video and photos, full-bleed hero, a sticky image that changes as words slide in from both sides
+   COLOUR wine #641B2B and deep wine as the grounds, warm white pages between, gold #C5A15A as the foil accent
+   TYPE   Bodoni Moda for the name and the big sequence words, Instrument Sans for everything else
+   LAYOUT laptop: hero screen, statement, sticky sequence, about split, projects on dotted wine, reel, services, lookbook rail, contact; phone: everything stacks, rails scroll sideways */
+:root{
+  color-scheme:light;
+  --wine:#641B2B;--deep:#3D101C;--night:#22080F;--warm:#F8F5F2;--paper:#EFE8E1;
+  --gold:#C5A15A;--gold-soft:#E0CB97;--ink:#1D1418;--mut:#6B5A5E;
+  --line:rgba(197,161,90,.45);
+  --name:"Cinzel","Trajan Pro",Georgia,serif;
+  --disp:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --sans:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px;background:var(--warm)}
+body{margin:0;background:var(--warm);color:var(--ink);font:17px/1.6 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3,p,figure,ul{margin:0;padding:0}
+ul{list-style:none}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(64px,9vw,140px);padding-left:max(5vw,16px,env(safe-area-inset-left,0px));padding-right:max(5vw,16px,env(safe-area-inset-right,0px))}
+.h2{font:500 clamp(34px,4.6vw,62px)/1.04 var(--sans);letter-spacing:-.035em;text-wrap:balance}
+.lead{font-size:clamp(17px,1.4vw,19px);max-width:62ch}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:500;font-size:15px;text-decoration:none;transition:background .3s,color .3s,transform .3s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:var(--night)}
+.btn-gold:hover{background:var(--gold-soft)}
+.btn-line{border:1px solid currentColor}
+.btn-line:hover{background:var(--warm);color:var(--wine)}
+
+/* header */
+.top{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;gap:24px;height:68px;padding:env(safe-area-inset-top,0px) max(4vw,16px,env(safe-area-inset-right,0px)) 0 max(4vw,16px,env(safe-area-inset-left,0px));color:var(--warm);transition:background .4s,box-shadow .4s}
+.top.solid{background:rgba(61,16,28,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand img{height:52px;width:auto;filter:drop-shadow(0 1px 6px rgba(34,8,15,.45))}
+.nav{display:flex;gap:26px;margin-left:auto;font-size:15px}
+.nav a{text-decoration:none;opacity:.85;transition:opacity .2s}
+.nav a:hover{opacity:1}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;font-size:13px;font-weight:600}
+.lang button{min-width:40px;min-height:32px;border-radius:999px;opacity:.7}
+.lang button[aria-pressed=true]{background:var(--gold);color:var(--night);opacity:1}
+.top .btn{min-height:40px;padding:0 18px}
+.menu-btn{display:none;width:44px;height:44px;place-items:center}
+.menu-btn span{display:block;width:22px;height:1.5px;background:currentColor;box-shadow:0 -7px 0 currentColor,0 7px 0 currentColor}
+@media(max-width:900px){.nav{display:none}.lang{margin-left:auto}.menu-btn{display:grid}.top .btn{display:none}}
+.drawer{position:fixed;inset:0;z-index:49;background:var(--deep);color:var(--warm);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:90px max(8vw,24px) 40px;transform:translateY(-100%);transition:transform .5s var(--ease)}
+.drawer.open{transform:none}
+.drawer a{font:400 clamp(36px,9vw,56px)/1.2 var(--disp);text-decoration:none}
+.drawer .btn{margin-top:28px;align-self:flex-start;font-family:var(--sans)}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:grid;align-content:end;color:var(--warm);background:var(--deep);overflow:hidden}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:36% 30%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(34,8,15,.92) 0%,rgba(61,16,28,.35) 45%,rgba(61,16,28,.25) 75%,rgba(34,8,15,.55) 100%)}
+.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px 48px;padding:120px max(4vw,16px,env(safe-area-inset-right,0px)) clamp(32px,6vh,64px) max(4vw,16px,env(safe-area-inset-left,0px))}
+.hero h1{font:500 clamp(84px,17vw,250px)/.85 var(--name);letter-spacing:.01em}
+.hero-side{max-width:380px;display:grid;gap:22px;padding-bottom:12px}
+.hero-side p{font-size:18px;line-height:1.5}
+.hero-side .row{display:flex;flex-wrap:wrap;gap:12px}
+.rec{position:absolute;z-index:1;top:88px;right:max(4vw,16px);display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.04em}
+.rec i{width:9px;height:9px;border-radius:50%;background:#e2483d;animation:blink 1.6s steps(2) infinite}
+@keyframes blink{50%{opacity:.15}}
+@media(max-width:760px){.hero-in{grid-template-columns:1fr}.hero-side{max-width:none}}
+
+/* statement */
+.state{text-align:center;background:var(--warm)}
+.state .big{font:500 clamp(36px,5.6vw,80px)/1.04 var(--sans);letter-spacing:-.04em;max-width:16ch;margin:0 auto;text-wrap:balance;color:var(--wine)}
+.state p{margin:28px auto 0;color:var(--mut);max-width:46ch;font-size:19px}
+
+/* sticky sequence */
+.seq{overflow-x:clip;background:var(--warm);padding:0 max(4vw,16px) clamp(64px,8vw,120px)}
+.seq-in{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;max-width:1240px;margin:0 auto}
+.frame{display:grid;gap:14px}
+.frame .pic{aspect-ratio:4/5;overflow:hidden;background:var(--paper)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame figcaption{font:400 clamp(28px,3vw,40px)/1.1 var(--disp);color:var(--wine)}
+.seq .wl,.seq .wr,.seq .ticks{display:none}
+.seq.live{height:420svh;padding:0}
+.seq.live .seq-in{position:sticky;top:0;height:100svh;max-width:none;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:clamp(20px,3vw,48px);padding:80px max(4vw,16px) 40px}
+.seq.live .stage{position:relative;height:min(72svh,760px);aspect-ratio:4/5;grid-column:2;grid-row:1}
+.seq.live .frame{position:absolute;inset:0;opacity:0;transition:opacity .9s var(--ease)}
+.seq.live .frame .pic{height:100%;aspect-ratio:auto}
+.seq.live .frame img{transform:scale(1.08);transition:transform 1.6s var(--ease)}
+.seq.live .frame.on{opacity:1}
+.seq.live .frame.on img{transform:none}
+.seq.live figcaption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.seq.live .wl,.seq.live .wr{display:grid;position:relative;font:400 clamp(40px,6.4vw,104px)/1 var(--disp);color:var(--wine);letter-spacing:-.03em}
+.seq.live .wl{text-align:right;grid-column:1}
+.seq.live .wr{grid-column:3}
+.wl span,.wr span{grid-area:1/1;opacity:0;transition:opacity .7s var(--ease),transform .9s var(--ease)}
+.wl span{transform:translateX(-60px)}
+.wr span{transform:translateX(60px);font-style:italic;color:var(--gold)}
+.wl span.on,.wr span.on{opacity:1;transform:none}
+.seq.live .ticks{display:flex;gap:8px;position:absolute;left:50%;bottom:28px;transform:translateX(-50%)}
+.ticks i{width:28px;height:2px;background:rgba(100,27,43,.18);transition:background .4s}
+.ticks i.on{background:var(--wine)}
+@media(max-width:760px){
+  .seq-in{grid-template-columns:minmax(0,1fr)}
+  .seq.live .seq-in{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;align-content:center;justify-items:center;gap:18px;padding-top:76px}
+  .seq.live .stage{grid-column:1;grid-row:2;height:auto;width:min(78vw,420px)}
+  .seq.live .wl,.seq.live .wr{grid-column:1;text-align:center;font-size:clamp(40px,12vw,64px)}
+  .seq.live .wl{grid-row:1}.seq.live .wr{grid-row:3}
+}
+
+/* about */
+.about{background:var(--wine);color:var(--warm)}
+.about-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,96px);align-items:center}
+.duo{position:relative;padding:0 18% 14% 0}
+.duo img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.duo img+img{position:absolute;right:0;bottom:0;width:46%;border:6px solid var(--wine)}
+.about .h2{margin-bottom:28px}
+.about p+p{margin-top:18px}
+.about .lead{color:rgba(248,245,242,.82)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.chips li{border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:15px;color:var(--gold-soft)}
+@media(max-width:820px){.about-in{grid-template-columns:minmax(0,1fr)}.duo{max-width:520px}}
+
+/* projects */
+.work{background:var(--deep) radial-gradient(rgba(197,161,90,.16) 1px,transparent 1.3px) 0 0/16px 16px;color:var(--warm)}
+.work-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end;margin-bottom:clamp(48px,7vw,96px)}
+.idx{display:flex;flex-wrap:wrap;gap:10px}
+.idx a{border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-size:15px;text-decoration:none;transition:background .3s,color .3s}
+.idx a:hover{background:var(--gold);color:var(--night)}
+.proj{padding-block:clamp(40px,6vw,80px);border-top:1px solid var(--line)}
+.proj-top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:24px clamp(32px,6vw,96px);align-items:start}
+.proj h3{font:500 clamp(48px,7vw,104px)/.95 var(--disp);letter-spacing:-.03em}
+.cat{display:block;color:var(--gold);font-size:16px;margin-bottom:14px}
+.proj .lead{color:rgba(248,245,242,.84)}
+.role{display:flex;gap:16px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(248,245,242,.14);font-size:16px}
+.role b{color:var(--gold-soft);font-weight:500;white-space:nowrap}
+.rail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin-top:clamp(32px,4vw,56px)}
+.card{position:relative;aspect-ratio:9/16;overflow:hidden;background:var(--night);border-radius:4px}
+.card img,.card video{width:100%;height:100%;object-fit:cover}
+.card figcaption{position:absolute;left:14px;bottom:12px;right:14px;font-size:14px;color:var(--warm);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.snd{position:absolute;right:10px;top:10px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(34,8,15,.6);border:1px solid var(--line);color:var(--warm);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.snd svg{width:20px;height:20px}
+.snd .on{display:none}.snd[aria-pressed=true] .on{display:block}.snd[aria-pressed=true] .off{display:none}
+.avren{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,96px);align-items:center}
+.avren .pic{aspect-ratio:4/5;overflow:hidden;border-radius:4px}
+.avren .pic img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+@media(max-width:820px){
+  .work-head,.proj-top,.avren{grid-template-columns:minmax(0,1fr)}
+  .rail{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(-1 * max(5vw,16px));padding-inline:max(5vw,16px);scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}
+  .rail .card{flex:0 0 68%;scroll-snap-align:center}
+}
+
+/* reel */
+.reel{position:relative;background:var(--night);color:var(--warm);overflow:hidden}
+.reel .blur{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(40px) saturate(1.1);opacity:.45}
+.reel-in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,auto);gap:clamp(32px,6vw,96px);align-items:center}
+.reel .card{width:min(360px,80vw);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.reel .h2{margin-bottom:22px}
+.reel .lead{color:rgba(248,245,242,.82)}
+@media(max-width:760px){.reel-in{grid-template-columns:minmax(0,1fr);justify-items:start}.reel .card{justify-self:center}}
+
+/* services */
+.serv-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start}
+.serv-pic{position:sticky;top:100px;aspect-ratio:3/4;overflow:hidden;border-radius:4px}
+.serv-pic img{width:100%;height:100%;object-fit:cover;object-position:55% 10%}
+.serv .h2{color:var(--wine);margin-bottom:12px}
+.serv .lead{color:var(--mut);margin-bottom:36px}
+.svc li{display:grid;grid-template-columns:minmax(0,15em) minmax(0,1fr);gap:8px 32px;padding:26px 0;border-top:1px solid var(--line)}
+.svc li:last-child{border-bottom:1px solid var(--line)}
+.svc h3{font:400 clamp(24px,2.3vw,32px)/1.1 var(--disp);color:var(--wine)}
+.svc p{color:var(--mut);font-size:16px}
+@media(max-width:820px){.serv-in{grid-template-columns:minmax(0,1fr)}.serv-pic{position:relative;top:0;aspect-ratio:16/11}}
+@media(max-width:560px){.svc li{grid-template-columns:minmax(0,1fr)}}
+
+/* lookbook */
+.look{background:var(--night);color:var(--warm);padding-block:clamp(56px,7vw,110px)}
+.marq{overflow:hidden;border-block:1px solid var(--line);padding:16px 0;margin-bottom:clamp(36px,5vw,64px)}
+.marq div{display:flex;width:max-content;animation:marq 38s linear infinite;font:400 clamp(22px,2.6vw,34px)/1 var(--disp);color:var(--gold-soft);white-space:nowrap}
+.marq span{padding-right:.6em}
+@keyframes marq{to{transform:translateX(-50%)}}
+.look-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;padding-inline:max(5vw,16px);max-width:calc(1240px + 10vw);margin:0 auto 28px}
+.arrows{display:flex;gap:10px}
+.arrows button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);font-size:20px;transition:background .3s,color .3s}
+.arrows button:hover{background:var(--gold);color:var(--night)}
+.strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 max(5vw,16px) 8px;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.strip figure{flex:0 0 auto;height:min(64svh,620px);scroll-snap-align:start;overflow:hidden;border-radius:4px}
+.strip img{height:100%;width:auto;object-fit:cover}
+@media(max-width:600px){.strip figure{height:auto;width:78vw;aspect-ratio:3/4}.strip figure.wide{aspect-ratio:auto}.strip img{width:100%;height:100%}}
+
+/* contact */
+.contact{background:var(--wine);color:var(--warm)}
+.contact-in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:center}
+.contact .big{font:500 clamp(48px,7.2vw,112px)/.96 var(--disp);letter-spacing:-.035em;text-wrap:balance}
+.contact .lead{margin:24px 0 36px;color:rgba(248,245,242,.82)}
+.wa-big{min-height:60px;padding:0 30px;font-size:17px}
+.wa-big svg{width:22px;height:22px}
+.num{display:block;margin-top:14px;font-size:15px;color:var(--gold-soft);white-space:nowrap}
+.links{margin-top:40px;border-top:1px solid var(--line)}
+.links li{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:60px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.links span{color:rgba(248,245,242,.66);font-size:15px}
+.links a{text-decoration:none;font-weight:500;overflow-wrap:anywhere}
+.links a:hover{color:var(--gold-soft)}
+.copy{border:1px solid var(--line);border-radius:999px;min-height:36px;padding:0 14px;font-size:13px;margin-left:10px}
+.c-pic{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:4px}
+.c-pic img:first-child{width:100%;height:100%;object-fit:cover}
+.c-pic img+img{position:absolute;right:18px;bottom:18px;width:84px}
+@media(max-width:820px){.contact-in{grid-template-columns:minmax(0,1fr)}.c-pic{max-width:440px;aspect-ratio:4/5}}
+footer{background:var(--night);color:rgba(248,245,242,.7);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:28px max(5vw,16px) calc(28px + env(safe-area-inset-bottom,0px));font-size:14px}
+footer .fname{font:500 24px/1 var(--name);color:var(--warm)}
+
+/* floating whatsapp */
+.fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--night);box-shadow:0 10px 30px rgba(34,8,15,.35);transition:transform .3s var(--ease),opacity .3s;opacity:0;pointer-events:none;transform:translateY(12px)}
+.fab.show{opacity:1;pointer-events:auto;transform:none}
+.fab svg{width:26px;height:26px}
+/* click sparkles */
+.fx{position:fixed;inset:0;pointer-events:none;z-index:100;overflow:hidden}
+.pt{position:absolute;left:0;top:0;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);will-change:transform,opacity}
+.pt svg{display:block;width:100%;height:100%;overflow:visible}
+.glow{position:absolute;left:0;top:0;width:70px;height:70px;margin:-35px 0 0 -35px;border-radius:50%;background:radial-gradient(circle,rgba(255,228,236,.85) 0%,rgba(246,200,214,.45) 40%,rgba(246,200,214,0) 70%);will-change:transform,opacity}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <a class="brand" href="#inicio" aria-label="Gio, inicio" data-aria-en="Gio, home"><img src="media/logo-g.png" alt=""></a>
+  <nav class="nav" aria-label="Principal" data-aria-en="Main">
+    <a href="#trabajo" data-en="Work">Trabajo</a>
+    <a href="#sobre" data-en="About">Sobre mí</a>
+    <a href="#proyectos" data-en="Projects">Proyectos</a>
+    <a href="#servicios" data-en="Services">Servicios</a>
+    <a href="#contacto" data-en="Contact">Contacto</a>
+  </nav>
+  <div class="lang" role="group" aria-label="Idioma">
+    <button type="button" data-l="es" aria-pressed="true">ES</button>
+    <button type="button" data-l="en" aria-pressed="false">EN</button>
+  </div>
+  <a class="btn btn-gold wa" href="https://wa.me/573204018547" target="_blank" rel="noopener" data-en="Let's talk">Hablemos</a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menú"><span></span></button>
+</header>
+<div class="drawer" id="drawer">
+  <a href="#trabajo" data-en="Work">Trabajo</a>
+  <a href="#sobre" data-en="About">Sobre mí</a>
+  <a href="#proyectos" data-en="Projects">Proyectos</a>
+  <a href="#servicios" data-en="Services">Servicios</a>
+  <a href="#contacto" data-en="Contact">Contacto</a>
+  <a class="btn btn-gold wa" href="https://wa.me/573204018547" target="_blank" rel="noopener" data-en="Message me on WhatsApp">Escríbeme por WhatsApp</a>
+</div>
+
+<main>
+<section class="hero" id="inicio">
+  <img class="poster" src="media/portada-poster.jpg" alt="">
+  <video id="heroVid" src="media/portada.mp4" poster="media/portada-poster.jpg" muted playsinline loop autoplay preload="auto" aria-hidden="true"></video>
+  <div class="rec" aria-hidden="true"><i></i>REC</div>
+  <div class="hero-in">
+    <h1>GIO</h1>
+    <div class="hero-side">
+      <p data-en="Creative direction, fashion and digital marketing. I turn concepts into visual experiences with identity.">Dirección creativa, moda y marketing digital. Transformo conceptos en experiencias visuales con identidad.</p>
+      <div class="row">
+        <a class="btn btn-gold" href="#proyectos" data-en="See my work →">Conoce mi trabajo →</a>
+        <a class="btn btn-line wa" href="https://wa.me/573204018547" target="_blank" rel="noopener" data-en="Let's talk">Hablemos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band state">
+  <p class="big" data-en="Creativity that communicates, ideas that last.">Creatividad que comunica, ideas que trascienden.</p>
+  <p data-en="Fashion, image and strategy working together, so every brand looks like itself.">Moda, imagen y estrategia trabajando juntas, para que cada marca se vea como ella misma.</p>
+</section>
+
+<section class="seq" id="trabajo" aria-label="Lo que hago" data-aria-en="What I do">
+  <div class="seq-in">
+    <div class="wl" aria-hidden="true"><span data-en="Creative">Dirección</span><span data-en="Modeling">Modelaje</span><span data-en="Runway">Pasarela</span><span data-en="Content">Contenido</span></div>
+    <div class="stage">
+      <figure class="frame on"><div class="pic"><img src="media/avren.jpg" alt="Propuesta AVREN, Coming soon" data-alt-en="AVREN proposal, Coming soon" style="object-position:50% 60%"></div><figcaption data-en="Creative direction">Dirección creativa</figcaption></figure>
+      <figure class="frame"><div class="pic"><img src="media/blazer-verde.jpg" alt="GIO. con blazer verde" data-alt-en="GIO. in a green blazer" loading="lazy"></div><figcaption data-en="Modeling with character">Modelaje con carácter</figcaption></figure>
+      <figure class="frame"><div class="pic"><img src="media/pasarela-1.jpg" alt="GIO. en pasarela" data-alt-en="GIO. on the runway" loading="lazy" style="object-position:50% 30%"></div><figcaption data-en="Live runway">Pasarela en vivo</figcaption></figure>
+      <figure class="frame"><div class="pic"><img src="media/urbano.jpg" alt="GIO. en una sesión urbana" data-alt-en="GIO. in an urban shoot" loading="lazy"></div><figcaption data-en="Content that connects">Contenido que conecta</figcaption></figure>
+    </div>
+    <div class="wr" aria-hidden="true"><span data-en="direction">creativa</span><span data-en="with character">con carácter</span><span data-en="live">en vivo</span><span data-en="that connects">que conecta</span></div>
+    <div class="ticks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<section class="band about" id="sobre">
+  <div class="wrap about-in">
+    <div class="duo">
+      <img src="media/escalera.jpg" alt="GIO. con un conjunto blanco en una escalera" data-alt-en="GIO. in a white outfit on a staircase" loading="lazy" style="object-position:50% 22%">
+      <img src="media/negro.jpg" alt="GIO. con blazer negro" data-alt-en="GIO. in a black blazer" loading="lazy">
+    </div>
+    <div>
+      <h2 class="h2" data-en="A creative eye,<br>a style of her own">Una mirada creativa,<br>una esencia propia</h2>
+      <p class="lead" data-en="I'm a creative passionate about fashion, communication and the visual world of brands. My background in Advertising and Digital Marketing has given me a strategic, creative eye to turn ideas into concepts with identity.">Soy una creativa apasionada por la moda, la comunicación y el universo visual de las marcas. Mi formación en Publicidad y Marketing Digital me ha permitido desarrollar una mirada estratégica y creativa para transformar ideas en conceptos con identidad.</p>
+      <p class="lead" data-en="I like exploring new trends, telling stories through images and building experiences that carry emotion. I believe in the power of details to turn an idea into something extraordinary.">Me interesa explorar nuevas tendencias, contar historias a través de imágenes y construir experiencias que transmitan emociones. Creo en el poder de los detalles para convertir una idea en algo extraordinario.</p>
+      <ul class="chips">
+        <li data-en="Fashion">Moda</li><li data-en="Creative direction">Dirección creativa</li><li>Branding</li><li data-en="Digital marketing">Marketing digital</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band work" id="proyectos">
+  <div class="wrap">
+    <div class="work-head">
+      <h2 class="h2" data-en="Projects that<br>tell stories">Proyectos que<br>cuentan historias</h2>
+      <div class="idx"><a href="#avren">AVREN</a><a href="#foco">FOCO CREATIVO</a><a href="#modelstudio">MODELSTUDIO</a></div>
+    </div>
+
+    <article class="proj avren" id="avren">
+      <div>
+        <span class="cat" data-en="Creative direction">Dirección creativa</span>
+        <h3>AVREN</h3>
+        <p class="lead" style="margin-top:22px" data-en="A creative direction and strategic concept proposal for a brand launch: visual identity, narrative and communication ideas.">Propuesta de dirección creativa y conceptualización estratégica para el lanzamiento de una marca. Construcción de identidad visual, narrativa y propuestas de comunicación.</p>
+        <div class="role"><b data-en="My role">Mi rol</b><span data-en="Creative direction and brand concept.">Dirección creativa y conceptualización de marca.</span></div>
+      </div>
+      <div class="pic"><img src="media/avren.jpg" alt="Pieza de lanzamiento de AVREN" data-alt-en="AVREN launch piece" loading="lazy"></div>
+    </article>
+
+    <article class="proj" id="foco">
+      <div class="proj-top">
+        <div><span class="cat" data-en="Modeling and collaborations">Modelaje y colaboraciones</span><h3>FOCO<br>CREATIVO</h3></div>
+        <div>
+          <p class="lead" data-en="Collaborations with brands and creative projects, bringing products and visual concepts to life through modeling.">Participación en colaboraciones con marcas y proyectos creativos, representando productos y conceptos visuales a través del modelaje.</p>
+          <div class="role"><b data-en="My role">Mi rol</b><span data-en="Model in collaborations.">Modelo en colaboraciones.</span></div>
+        </div>
+      </div>
+      <div class="rail">
+        <figure class="card"><video data-src="media/verde.mp4" poster="media/verde-poster.jpg" muted playsinline loop preload="none"></video><figcaption data-en="Olive blazer">Blazer oliva</figcaption><button class="snd" type="button" aria-pressed="false" aria-label="Activar sonido" data-aria-en="Turn sound on"></button></figure>
+        <figure class="card"><video data-src="media/blanco.mp4" poster="media/blanco-poster.jpg" muted playsinline loop preload="none"></video><figcaption data-en="White pleats">Blanco plisado</figcaption><button class="snd" type="button" aria-pressed="false" aria-label="Activar sonido" data-aria-en="Turn sound on"></button></figure>
+        <figure class="card"><img src="media/blazer-verde.jpg" alt="GIO. con blazer verde en estudio" data-alt-en="GIO. in a green blazer in the studio" loading="lazy"><figcaption data-en="Studio">Estudio</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="proj" id="modelstudio">
+      <div class="proj-top">
+        <div><span class="cat" data-en="Fashion, modeling and digital content">Moda, modelaje y contenido digital</span><h3>MODEL<br>STUDIO</h3></div>
+        <div>
+          <p class="lead" data-en="A runway event, combining modeling with content creation to share the experience of the night.">Participación en un evento de pasarela, integrando el modelaje y la creación de contenido para comunicar la experiencia del evento.</p>
+          <div class="role"><b data-en="My role">Mi rol</b><span data-en="Model and content creator.">Modelo y creadora de contenido.</span></div>
+        </div>
+      </div>
+      <div class="rail">
+        <figure class="card"><video data-src="media/pasarela.mp4" poster="media/pasarela-poster.jpg" muted playsinline loop preload="none"></video><figcaption data-en="Runway">Pasarela</figcaption><button class="snd" type="button" aria-pressed="false" aria-label="Activar sonido" data-aria-en="Turn sound on"></button></figure>
+        <figure class="card"><img src="media/pasarela-1.jpg" alt="GIO. en pasarela con bolso negro" data-alt-en="GIO. on the runway with a black bag" loading="lazy" style="object-position:50% 30%"><figcaption data-en="Look">Look</figcaption></figure>
+        <figure class="card"><img src="media/pasarela-2.jpg" alt="GIO. desfilando con otras modelos" data-alt-en="GIO. walking with other models" loading="lazy" style="object-position:58% 40%"><figcaption data-en="Walk">Desfile</figcaption></figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="band reel">
+  <video class="blur" data-src="media/urban.mp4" muted playsinline loop preload="none" aria-hidden="true"></video>
+  <div class="wrap reel-in">
+    <div>
+      <h2 class="h2" data-en="From the shoot<br>to the reel">De la sesión<br>al reel</h2>
+      <p class="lead" data-en="Urban modeling with Gio: posing, photo and video on location, ready for Reels and TikTok.">Urban modeling with Gio: poses, fotografía y video en locación, listos para Reels y TikTok.</p>
+      <a class="btn btn-gold" href="https://www.tiktok.com/@hey_itsgio" target="_blank" rel="noopener" style="margin-top:30px" data-en="More on TikTok ↗">Más en TikTok ↗</a>
+    </div>
+    <figure class="card"><video data-src="media/urban.mp4" poster="media/urban-poster.jpg" muted playsinline loop preload="none"></video><button class="snd" type="button" aria-pressed="false" aria-label="Activar sonido" data-aria-en="Turn sound on"></button></figure>
+  </div>
+</section>
+
+<section class="band serv" id="servicios">
+  <div class="wrap serv-in">
+    <div class="serv-pic"><img src="media/biblioteca.jpg" alt="GIO. leyendo en una biblioteca" data-alt-en="GIO. reading in a library" loading="lazy"></div>
+    <div>
+      <h2 class="h2" data-en="Creativity at the<br>service of brands">Creatividad al servicio<br>de las marcas</h2>
+      <p class="lead" data-en="How we can work together.">Cómo podemos trabajar juntos.</p>
+      <ul class="svc">
+        <li><h3 data-en="Creative direction">Dirección creativa</h3><p data-en="I develop concepts, ideas and visual proposals that give your brand personality and coherence.">Desarrollo conceptos, ideas y propuestas visuales para darle personalidad y coherencia a tu marca.</p></li>
+        <li><h3 data-en="Content creation">Creación de contenido</h3><p data-en="Photo and video content that shows your products and experiences and connects with your audience.">Creo contenido fotográfico y audiovisual para comunicar productos, experiencias y conectar con tu audiencia.</p></li>
+        <li><h3 data-en="Modeling and collaborations">Modelaje y colaboraciones</h3><p data-en="I represent brands and products in campaigns, photo shoots, events and advertising content.">Represento marcas y productos en campañas, producciones fotográficas, eventos y contenido publicitario.</p></li>
+        <li><h3 data-en="Branding and visual identity">Branding e identidad visual</h3><p data-en="I help build a visual identity that reflects the essence and personality of your business.">Ayudo a construir una identidad visual que refleje la esencia y personalidad de tu negocio.</p></li>
+        <li><h3 data-en="Digital marketing">Marketing digital</h3><p data-en="Communication ideas and strategies that strengthen a brand's digital presence.">Desarrollo ideas y estrategias de comunicación para mejorar la presencia digital de las marcas.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="look" aria-label="Lookbook">
+  <div class="marq" aria-hidden="true"><div id="marq"><span data-en="Fashion ✦ Creative direction ✦ Branding ✦ Digital marketing ✦ Modeling ✦ Content ✦">Moda ✦ Dirección creativa ✦ Branding ✦ Marketing digital ✦ Modelaje ✦ Contenido ✦</span></div></div>
+  <div class="look-head">
+    <h2 class="h2">Lookbook</h2>
+    <div class="arrows"><button type="button" id="lbPrev" aria-label="Anterior" data-aria-en="Previous">←</button><button type="button" id="lbNext" aria-label="Siguiente" data-aria-en="Next">→</button></div>
+  </div>
+  <div class="strip" id="strip" tabindex="0">
+    <figure><img src="media/retrato-gafas.jpg" alt="Retrato de GIO. con gafas y bebida roja" data-alt-en="Portrait of GIO. with glasses and a red drink" loading="lazy"></figure>
+    <figure><img src="media/negro.jpg" alt="GIO. con blazer negro" data-alt-en="GIO. in a black blazer" loading="lazy"></figure>
+    <figure><img src="media/urbano.jpg" alt="GIO. con conjunto de denim" data-alt-en="GIO. in a denim outfit" loading="lazy"></figure>
+    <figure class="wide"><img src="media/selfie.jpg" alt="Retrato de GIO." data-alt-en="Portrait of GIO." loading="lazy"></figure>
+    <figure><img src="media/escalera.jpg" alt="GIO. con conjunto blanco" data-alt-en="GIO. in a white outfit" loading="lazy"></figure>
+    <figure><img src="media/pasarela-2.jpg" alt="GIO. en pasarela" data-alt-en="GIO. on the runway" loading="lazy"></figure>
+  </div>
+</section>
+
+<section class="band contact" id="contacto">
+  <div class="wrap contact-in">
+    <div>
+      <h2 class="big" data-en="Let's make something extraordinary">Hagamos algo extraordinario</h2>
+      <p class="lead" data-en="Every project starts with an idea. I'm here to turn it into something memorable.">Cada proyecto comienza con una idea. Estoy aquí para convertirla en algo memorable.</p>
+      <a class="btn btn-gold wa wa-big" href="https://wa.me/573204018547" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1 1 20.5 11.6z"/></svg>
+        <span data-en="Message me on WhatsApp">Escríbeme por WhatsApp</span>
+      </a>
+      <span class="num">+57 320 401 8547</span>
+      <ul class="links">
+        <li><span data-en="Email">Correo</span><div><a href="mailto:giovanna061301@gmail.com" id="mail">giovanna061301@gmail.com</a><button class="copy" id="copy" type="button" data-en="Copy">Copiar</button></div></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/stargixx/" target="_blank" rel="noopener">@stargixx ↗</a></li>
+        <li><span>TikTok</span><a href="https://www.tiktok.com/@hey_itsgio" target="_blank" rel="noopener">@hey_itsgio ↗</a></li>
+      </ul>
+    </div>
+    <div class="c-pic">
+      <img src="media/contacto.jpg" alt="GIO. sentada frente a un letrero de neón" data-alt-en="GIO. seated in front of a neon sign" loading="lazy" style="object-position:50% 25%">
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span class="fname">GIO</span>
+  <span data-en="© 2026 Creative direction, fashion and digital marketing.">© 2026 Dirección creativa, moda y marketing digital.</span>
+</footer>
+
+<a class="fab wa" id="fab" href="https://wa.me/573204018547" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1 1 20.5 11.6z"/></svg>
+</a>
+
+<script>
+{
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* language */
+const WA='573204018547';
+const MSG={es:'Hola Gio, vi tu portafolio y me gustaría hablar de un proyecto.',en:'Hi Gio, I saw your portfolio and would like to talk about a project.'};
+const txt=$$('[data-en]'); txt.forEach(e=>e.dataset.es=e.innerHTML);
+const alts=$$('[data-alt-en]'); alts.forEach(e=>e.dataset.altEs=e.alt);
+const arias=$$('[data-aria-en]'); arias.forEach(e=>e.dataset.ariaEs=e.getAttribute('aria-label'));
+const sndLabel={es:['Activar sonido','Silenciar'],en:['Turn sound on','Mute']};
+let lang='es';
+function setLang(l){
+  lang=l; document.documentElement.lang=l;
+  txt.forEach(e=>{e.innerHTML=l==='en'?e.dataset.en:e.dataset.es});
+  alts.forEach(e=>{e.alt=l==='en'?e.dataset.altEn:e.dataset.altEs});
+  arias.forEach(e=>e.setAttribute('aria-label',l==='en'?e.dataset.ariaEn:e.dataset.ariaEs));
+  $$('.snd').forEach(b=>b.setAttribute('aria-label',sndLabel[l][b.getAttribute('aria-pressed')==='true'?1:0]));
+  $$('.lang button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===l)));
+  $$('.wa').forEach(a=>a.href='https://wa.me/'+WA+'?text='+encodeURIComponent(MSG[l]));
+  $('.lang').setAttribute('aria-label',l==='en'?'Language':'Idioma');
+  $('#menuBtn').setAttribute('aria-label',l==='en'?'Menu':'Menú');
+  document.title=l==='en'?'GIO. Portfolio':'GIO. Portafolio';
+  try{localStorage.setItem('gio-lang',l)}catch(e){}
+  fillMarq();
+}
+$$('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.l)));
+
+/* marquee: repeat content so the loop is seamless */
+function fillMarq(){const m=$('#marq'),s=m.firstElementChild;$$('span',m).slice(1).forEach(x=>x.remove());for(let i=0;i<5;i++)m.appendChild(s.cloneNode(true)).removeAttribute('data-en')}
+
+/* header + floating button */
+const hdr=$("#top"), fab=$('#fab'), hero=$('#inicio');
+function onScrollUI(){const y=scrollY;hdr.classList.toggle("solid",y>40);fab.classList.toggle('show',y>hero.offsetHeight*.8)}
+
+/* drawer */
+const drawer=$('#drawer'), menuBtn=$('#menuBtn');
+function toggleMenu(open){drawer.classList.toggle('open',open);menuBtn.setAttribute('aria-expanded',String(open));document.body.style.overflow=open?'hidden':''}
+menuBtn.addEventListener('click',()=>toggleMenu(!drawer.classList.contains('open')));
+$$('a',drawer).forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+
+/* sticky sequence */
+const seq=$('#trabajo'), frames=$$('.frame',seq), wl=$$('.wl span',seq), wr=$$('.wr span',seq), ticks=$$('.ticks i',seq);
+if(!reduce) seq.classList.add('live');
+let cur=-1;
+function onScrollSeq(){
+  if(!seq.classList.contains('live'))return;
+  const r=seq.getBoundingClientRect(), span=seq.offsetHeight-innerHeight;
+  const p=Math.min(.999,Math.max(0,-r.top/span));
+  const i=Math.floor(p*frames.length);
+  if(i===cur)return; cur=i;
+  [frames,wl,wr,ticks].forEach(list=>list.forEach((e,k)=>e.classList.toggle('on',k===i)));
+}
+
+let ticking=false;
+addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{onScrollUI();onScrollSeq();ticking=false})},{passive:true});
+addEventListener('resize',()=>{cur=-1;onScrollSeq()});
+
+/* videos: load and play only while visible */
+const vids=$$('video[data-src]');
+const vio=new IntersectionObserver(es=>es.forEach(en=>{
+  const v=en.target;
+  if(en.isIntersecting){if(!v.src)v.src=v.dataset.src;if(!reduce||!v.muted)v.play().catch(()=>{})}
+  else v.pause();
+}),{rootMargin:'200px 0px'});
+vids.forEach(v=>vio.observe(v));
+const heroVid=$('#heroVid');
+if(reduce){heroVid.pause();heroVid.removeAttribute('autoplay')}
+
+/* sound toggles: one video with sound at a time */
+const ICON='<svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
+const snds=$$('.snd');
+snds.forEach(b=>{
+  b.innerHTML=ICON;
+  b.addEventListener('click',()=>{
+    const v=$('video',b.parentElement), on=b.getAttribute('aria-pressed')!=='true';
+    snds.forEach(o=>{const ov=$('video',o.parentElement);ov.muted=true;o.setAttribute('aria-pressed','false');o.setAttribute('aria-label',sndLabel[lang][0])});
+    if(on){if(!v.src)v.src=v.dataset.src;v.muted=false;v.play().catch(()=>{v.muted=true});b.setAttribute('aria-pressed','true');b.setAttribute('aria-label',sndLabel[lang][1])}
+  });
+});
+
+/* lookbook arrows */
+const strip=$('#strip');
+const step=d=>strip.scrollBy({left:d*Math.max(260,strip.clientWidth*.6),behavior:reduce?'auto':'smooth'});
+$('#lbPrev').addEventListener('click',()=>step(-1));
+$('#lbNext').addEventListener('click',()=>step(1));
+strip.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();step(1)}if(e.key==='ArrowLeft'){e.preventDefault();step(-1)}});
+
+/* copy email */
+const copyBtn=$('#copy');
+copyBtn.addEventListener('click',()=>{
+  const done=()=>{copyBtn.textContent=lang==='en'?'Copied':'Copiado';setTimeout(()=>{copyBtn.textContent=lang==='en'?'Copy':'Copiar'},1800)};
+  navigator.clipboard?.writeText('giovanna061301@gmail.com').then(done).catch(()=>{const r=document.createRange();r.selectNodeContents($('#mail'));const s=getSelection();s.removeAllRanges();s.addRange(r)});
+});
+
+/* click sparkles + sparkle sound */
+const fx=document.createElement('div'); fx.className='fx'; fx.setAttribute('aria-hidden','true'); document.body.appendChild(fx);
+const PASTEL=[['#F8A9C0','#E27D9E'],['#FBC7D6','#E895AE'],['#F5D98E','#D4AE55'],['#FFE6B0','#DDB866'],['#E4C1F2','#BE8CD6'],['#F9C59A','#E39A63']];
+const SHAPE={
+  star:'<svg viewBox="-12 -12 24 24"><path d="M0-10.5C1.3-4.5 4.5-1.3 10.5 0 4.5 1.3 1.3 4.5 0 10.5-1.3 4.5-4.5 1.3-10.5 0-4.5-1.3-1.3-4.5 0-10.5z" fill="FILL" stroke="LINE" stroke-width="1.3" stroke-linejoin="round"/></svg>',
+  heart:'<svg viewBox="-12 -12 24 24"><path d="M0 9C-6-3.5-11-6-11-1.5-11 3 -3 6.5 0 9zM0 9C6-3.5 11-6 11-1.5 11 3 3 6.5 0 9z" fill="none"/><path d="M0 9.5C-4 6.5-10.5 2.5-10.5-2.5c0-3.4 2.6-5.8 5.4-5.8 2.2 0 4 1.4 5.1 3.3 1.1-1.9 2.9-3.3 5.1-3.3 2.8 0 5.4 2.4 5.4 5.8C10.5 2.5 4 6.5 0 9.5z" fill="FILL" stroke="LINE" stroke-width="1.3" stroke-linejoin="round"/></svg>',
+  dot:'<svg viewBox="-12 -12 24 24"><circle r="8" fill="FILL" stroke="LINE" stroke-width="1.6"/></svg>'
+};
+function sparkle(x,y){
+  const n=reduce?5:11, out=[];
+  const g=document.createElement('i'); g.className='glow'; fx.appendChild(g); out.push(g);
+  g.animate([{transform:`translate(${x}px,${y}px) scale(.3)`,opacity:.9},{transform:`translate(${x}px,${y}px) scale(1.25)`,opacity:0}],{duration:700,easing:'ease-out'});
+  for(let i=0;i<n;i++){
+    const r=Math.random(), kind=r<.5?'star':r<.8?'heart':'dot';
+    const e=document.createElement('i'); e.className='pt';
+    const size=kind==='dot'?5+Math.random()*4:kind==='heart'?11+Math.random()*7:10+Math.random()*10;
+    e.style.setProperty('--s',size+'px');
+    const col=PASTEL[Math.floor(Math.random()*PASTEL.length)];
+    e.innerHTML=SHAPE[kind].replace('FILL',col[0]).replace('LINE',col[1]);
+    fx.appendChild(e); out.push(e);
+    const a=(i/n)*Math.PI*2+Math.random()*.5, d=(reduce?18:26)+Math.random()*(reduce?14:34);
+    const dx=Math.cos(a)*d, dy=Math.sin(a)*d*.8, rise=reduce?0:22+Math.random()*26;
+    const sway=(Math.random()-.5)*24, tilt=(Math.random()-.5)*40, dur=reduce?500:950+Math.random()*450;
+    e.animate([
+      {transform:`translate(${x}px,${y}px) scale(0) rotate(0deg)`,opacity:1},
+      {transform:`translate(${x+dx}px,${y+dy}px) scale(1.15) rotate(${tilt*.4}deg)`,opacity:1,offset:.28},
+      {transform:`translate(${x+dx+sway*.5}px,${y+dy-rise*.5}px) scale(1) rotate(${-tilt*.3}deg)`,opacity:1,offset:.6},
+      {transform:`translate(${x+dx+sway}px,${y+dy-rise}px) scale(.4) rotate(${tilt}deg)`,opacity:0}
+    ],{duration:dur,easing:'cubic-bezier(.34,1.3,.64,1)'});
+  }
+  setTimeout(()=>out.forEach(e=>e.remove()),1600);
+}
+let ac=null, lastSnd=0;
+function chime(){
+  const now=performance.now(); if(now-lastSnd<70)return; lastSnd=now;
+  try{
+    ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+    if(ac.state==='suspended')ac.resume();
+    const t0=ac.currentTime, master=ac.createGain(); master.gain.value=.16; master.connect(ac.destination);
+    const notes=[1568,1760,2093,2349,2637,3136,3520,4186];
+    for(let i=0;i<5;i++){
+      const t=t0+i*.045+Math.random()*.02, f=notes[Math.floor(Math.random()*notes.length)];
+      const o=ac.createOscillator(), g=ac.createGain();
+      o.type=i%2?'triangle':'sine'; o.frequency.setValueAtTime(f,t); o.frequency.exponentialRampToValueAtTime(f*1.02,t+.25);
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.5,t+.006); g.gain.exponentialRampToValueAtTime(.0008,t+.35+Math.random()*.2);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t+.6);
+    }
+  }catch(e){}
+}
+addEventListener('pointerdown',e=>{if(e.button>0)return;sparkle(e.clientX,e.clientY);chime()},{passive:true});
+
+/* start */
+let start='es';
+try{start=localStorage.getItem('gio-lang')||start}catch(e){}
+if(location.hash==='#en')start='en'; if(location.hash==='#es')start='es';
+setLang(start);
+onScrollUI(); onScrollSeq();
+}
+</script>
+</body>
+</html>
